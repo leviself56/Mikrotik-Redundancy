@@ -1,0 +1,12 @@
+/interface ethernet 
+:local primaryup [get sfp-sfpplus1 running]
+:local secondaryup [get sfp-sfpplus2 running]
+    :if (($primaryup=true)) do={
+        :if (($secondaryup=true)) do={
+            disable sfp-sfpplus2
+        }
+    } else={
+        :if (($secondaryup=false)) do={
+            enable sfp-sfpplus2
+        }
+    }
